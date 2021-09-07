@@ -1,0 +1,276 @@
+﻿apiVersion: v1
+items:
+- apiVersion: v1
+  data:
+    ca.crt: |
+      -----BEGIN CERTIFICATE-----
+      MIIC5zCCAc+gAwIBAgIBADANBgkqhkiG9w0BAQsFADAVMRMwEQYDVQQDEwprdWJl
+      cm5ldGVzMB4XDTIxMDkwNjA5MDEyN1oXDTMxMDkwNDA5MDEyN1owFTETMBEGA1UE
+      AxMKa3ViZXJuZXRlczCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAKNX
+      7AXKFB9MEnOWqa5cIQtP9LIoBeo+KECJP6o69Ul3z+IqX4E/xcwHXAKvWcgttVSa
+      UHckAGO/j/Oaoe85A/WnWlCxyci5BUsDgcUdirm9eSUuJ7ekP6aUlL1sFV8Hzz/D
+      t9+o3FXnhaJuYQLkzk0MJMPn19MIRhpIMj+zK1yelYttooB3P/hSsa02gTZAyMAb
+      UbtFZGW7jgqjVpMl5l8d3DF4TAr7kjFxTMbQo+oBTzXXZQGhfIVBKGH47LKf4A34
+      vGtgPEQzYAHCd9WnHIj+jlghK6Jw2cysadvqtuuBq/wdWcCeTnJWFjbcUz/9QmoC
+      75d/rbgRnHDVcNGjv58CAwEAAaNCMEAwDgYDVR0PAQH/BAQDAgKkMA8GA1UdEwEB
+      /wQFMAMBAf8wHQYDVR0OBBYEFKhl8UUytkQ38tWD8XnLpxRsQpQIMA0GCSqGSIb3
+      DQEBCwUAA4IBAQCVJ45ECt5ORWCg81YqC/DtFVGtyOn7vA3KVDqllRKZcgT0DyGe
+      B6HZ+rDP2QDAvyClEfywT0Ckv8PiLuomtDg5eB9JF2Q+msCVmO2qy7olGRCbNrD7
+      Z5vEYIoX9oB12XiOdiBG0lZFKwtPgGu56Kkzpm2/RQkn5CTJap45iP9sS1DUWNhq
+      MT3gpBsGu1dGrQZpmoKa6ALZHW1kiN9j50Igxqu0d7yVwVjyvdVVMtFMR131q6xV
+      HdNYevA1nIBgxhBaPCFsHbJbWbeqKVLdg4cRZtQ8+e5FpGC1QB6kiDes3xLB452z
+      ySsPQa0J4M5aUVdtJx/tA3EwR9XB7LLAtOY9
+      -----END CERTIFICATE-----
+  kind: ConfigMap
+  metadata:
+    creationTimestamp: "2021-09-06T09:02:22Z"
+    managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:data:
+          .: {}
+          f:ca.crt: {}
+      manager: kube-controller-manager
+      operation: Update
+      time: "2021-09-06T09:02:22Z"
+    name: kube-root-ca.crt
+    namespace: default
+    resourceVersion: "464"
+    uid: 817f2342-7d99-43e4-894b-6c6f10ab4da2
+- apiVersion: v1
+  kind: Service
+  metadata:
+    creationTimestamp: "2021-09-06T09:01:38Z"
+    labels:
+      component: apiserver
+      provider: kubernetes
+    managedFields:
+    - apiVersion: v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            .: {}
+            f:component: {}
+            f:provider: {}
+        f:spec:
+          f:clusterIP: {}
+          f:ipFamilyPolicy: {}
+          f:ports:
+            .: {}
+            k:{"port":443,"protocol":"TCP"}:
+              .: {}
+              f:name: {}
+              f:port: {}
+              f:protocol: {}
+              f:targetPort: {}
+          f:sessionAffinity: {}
+          f:type: {}
+      manager: kube-apiserver
+      operation: Update
+      time: "2021-09-06T09:01:38Z"
+    name: kubernetes
+    namespace: default
+    resourceVersion: "208"
+    uid: 69269a3d-87b6-433e-9ae3-f7779641d613
+  spec:
+    clusterIP: 10.233.0.1
+    clusterIPs:
+    - 10.233.0.1
+    ipFamilies:
+    - IPv4
+    ipFamilyPolicy: SingleStack
+    ports:
+    - name: https
+      port: 443
+      protocol: TCP
+      targetPort: 6443
+    sessionAffinity: None
+    type: ClusterIP
+  status:
+    loadBalancer: {}
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    annotations:
+      deployment.kubernetes.io/revision: "1"
+      field.cattle.io/creatorId: user-jkd4c
+      field.cattle.io/publicEndpoints: '[{"addresses":["192.168.150.131"],"port":31966,"protocol":"TCP","serviceName":"default:nginx-nodeport","allNodes":true}]'
+      kubectl.kubernetes.io/last-applied-configuration: |
+        {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{"deployment.kubernetes.io/revision":"1","field.cattle.io/creatorId":"user-jkd4c","field.cattle.io/publicEndpoints":"[{\"addresses\":[\"192.168.150.131\"],\"port\":31966,\"protocol\":\"TCP\",\"serviceName\":\"default:nginx-nodeport\",\"allNodes\":true}]"},"creationTimestamp":"2021-09-06T14:37:21Z","generation":2,"labels":{"app.kubernetes.io/instance":"nginx","cattle.io/creator":"norman","workload.user.cattle.io/workloadselector":"deployment-default-nginx"},"name":"nginx","namespace":"default","resourceVersion":"38061","uid":"77fbfc93-d797-4ace-94fe-e248f064b65b"},"spec":{"progressDeadlineSeconds":600,"replicas":1,"revisionHistoryLimit":10,"selector":{"matchLabels":{"workload.user.cattle.io/workloadselector":"deployment-default-nginx"}},"strategy":{"rollingUpdate":{"maxSurge":1,"maxUnavailable":0},"type":"RollingUpdate"},"template":{"metadata":{"annotations":{"cattle.io/timestamp":"2021-09-07T02:36:19Z","field.cattle.io/ports":"[[{\"containerPort\":80,\"dnsName\":\"nginx-nodeport\",\"hostPort\":0,\"kind\":\"NodePort\",\"name\":\"80tcp01\",\"protocol\":\"TCP\",\"sourcePort\":0}]]"},"creationTimestamp":null,"labels":{"workload.user.cattle.io/workloadselector":"deployment-default-nginx"}},"spec":{"containers":[{"image":"nginx","imagePullPolicy":"Always","name":"nginx","ports":[{"containerPort":80,"name":"80tcp01","protocol":"TCP"}],"resources":{},"securityContext":{"allowPrivilegeEscalation":false,"capabilities":{},"privileged":false,"readOnlyRootFilesystem":false,"runAsNonRoot":false},"stdin":true,"terminationMessagePath":"/dev/termination-log","terminationMessagePolicy":"File","tty":true}],"dnsPolicy":"ClusterFirst","restartPolicy":"Always","schedulerName":"default-scheduler","securityContext":{},"terminationGracePeriodSeconds":30}}},"status":{"availableReplicas":1,"conditions":[{"lastTransitionTime":"2021-09-06T14:37:40Z","lastUpdateTime":"2021-09-06T14:37:40Z","message":"Deployment has minimum availability.","reason":"MinimumReplicasAvailable","status":"True","type":"Available"},{"lastTransitionTime":"2021-09-06T14:37:21Z","lastUpdateTime":"2021-09-06T14:37:40Z","message":"ReplicaSet \"nginx-76bcdfb5f6\" has successfully progressed.","reason":"NewReplicaSetAvailable","status":"True","type":"Progressing"}],"observedGeneration":2,"readyReplicas":1,"replicas":1,"updatedReplicas":1}}
+    creationTimestamp: "2021-09-07T00:42:29Z"
+    generation: 1
+    labels:
+      app.kubernetes.io/instance: nginx
+      cattle.io/creator: norman
+      workload.user.cattle.io/workloadselector: deployment-default-nginx
+    managedFields:
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:deployment.kubernetes.io/revision: {}
+            f:field.cattle.io/creatorId: {}
+            f:field.cattle.io/publicEndpoints: {}
+            f:kubectl.kubernetes.io/last-applied-configuration: {}
+          f:labels:
+            .: {}
+            f:app.kubernetes.io/instance: {}
+            f:cattle.io/creator: {}
+            f:workload.user.cattle.io/workloadselector: {}
+        f:spec:
+          f:progressDeadlineSeconds: {}
+          f:replicas: {}
+          f:revisionHistoryLimit: {}
+          f:selector: {}
+          f:strategy:
+            f:rollingUpdate:
+              .: {}
+              f:maxSurge: {}
+              f:maxUnavailable: {}
+            f:type: {}
+          f:template:
+            f:metadata:
+              f:annotations:
+                .: {}
+                f:cattle.io/timestamp: {}
+                f:field.cattle.io/ports: {}
+              f:labels:
+                .: {}
+                f:workload.user.cattle.io/workloadselector: {}
+            f:spec:
+              f:containers:
+                k:{"name":"nginx"}:
+                  .: {}
+                  f:image: {}
+                  f:imagePullPolicy: {}
+                  f:name: {}
+                  f:ports:
+                    .: {}
+                    k:{"containerPort":80,"protocol":"TCP"}:
+                      .: {}
+                      f:containerPort: {}
+                      f:name: {}
+                      f:protocol: {}
+                  f:resources: {}
+                  f:securityContext:
+                    .: {}
+                    f:allowPrivilegeEscalation: {}
+                    f:capabilities: {}
+                    f:privileged: {}
+                    f:readOnlyRootFilesystem: {}
+                    f:runAsNonRoot: {}
+                  f:stdin: {}
+                  f:terminationMessagePath: {}
+                  f:terminationMessagePolicy: {}
+                  f:tty: {}
+              f:dnsPolicy: {}
+              f:restartPolicy: {}
+              f:schedulerName: {}
+              f:securityContext: {}
+              f:terminationGracePeriodSeconds: {}
+      manager: argocd-application-controller
+      operation: Update
+      time: "2021-09-07T00:42:29Z"
+    - apiVersion: apps/v1
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:status:
+          f:availableReplicas: {}
+          f:conditions:
+            .: {}
+            k:{"type":"Available"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"Progressing"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+          f:observedGeneration: {}
+          f:readyReplicas: {}
+          f:replicas: {}
+          f:updatedReplicas: {}
+      manager: kube-controller-manager
+      operation: Update
+      time: "2021-09-07T00:44:54Z"
+    name: nginx
+    namespace: default
+    resourceVersion: "100645"
+    uid: cad884e0-3d41-4cb6-8134-1f03605f936c
+  spec:
+    progressDeadlineSeconds: 600
+    replicas: 1
+    revisionHistoryLimit: 10
+    selector:
+      matchLabels:
+        workload.user.cattle.io/workloadselector: deployment-default-nginx
+    strategy:
+      rollingUpdate:
+        maxSurge: 1
+        maxUnavailable: 0
+      type: RollingUpdate
+    template:
+      metadata:
+        annotations:
+          cattle.io/timestamp: "2021-09-07T02:36:19Z"
+          field.cattle.io/ports: '[[{"containerPort":80,"dnsName":"nginx-nodeport","hostPort":0,"kind":"NodePort","name":"80tcp01","protocol":"TCP","sourcePort":0}]]'
+        creationTimestamp: null
+        labels:
+          workload.user.cattle.io/workloadselector: deployment-default-nginx
+      spec:
+        containers:
+        - image: nginx
+          imagePullPolicy: Always
+          name: nginx
+          ports:
+          - containerPort: 80
+            name: 80tcp01
+            protocol: TCP
+          resources: {}
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities: {}
+            privileged: false
+            readOnlyRootFilesystem: false
+            runAsNonRoot: false
+          stdin: true
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          tty: true
+        dnsPolicy: ClusterFirst
+        restartPolicy: Always
+        schedulerName: default-scheduler
+        securityContext: {}
+        terminationGracePeriodSeconds: 30
+  status:
+    availableReplicas: 1
+    conditions:
+    - lastTransitionTime: "2021-09-07T00:44:54Z"
+      lastUpdateTime: "2021-09-07T00:44:54Z"
+      message: Deployment has minimum availability.
+      reason: MinimumReplicasAvailable
+      status: "True"
+      type: Available
+    - lastTransitionTime: "2021-09-07T00:42:29Z"
+      lastUpdateTime: "2021-09-07T00:44:54Z"
+      message: ReplicaSet "nginx-76bcdfb5f6" has successfully progressed.
+      reason: NewReplicaSetAvailable
+      status: "True"
+      type: Progressing
+    observedGeneration: 1
+    readyReplicas: 1
+    replicas: 1
+    updatedReplicas: 1
+kind: List
